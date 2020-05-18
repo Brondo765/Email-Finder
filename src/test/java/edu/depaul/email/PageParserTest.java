@@ -14,8 +14,9 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PageParserTest {
-    private final File file = new File("C:\\Users\\brond\\OneDrive\\Desktop\\DePaul University\\SE-333 (Software Testing)\\Project\\src\\test\\resources\\oneTestPage.html");
-    private final File file2 = new File("C:\\Users\\brond\\OneDrive\\Desktop\\DePaul University\\SE-333 (Software Testing)\\Project\\src\\test\\resources\\multiTestPage.html");
+    // Made easier for relative path in Windows file system
+    private final File file = new File("src\\test\\resources\\oneTestPage.html");
+    private final File file2 = new File("src\\test\\resources\\multiTestPage.html");
     private PageParser parser;
     private Set<String> expected = new HashSet<String>();
 
