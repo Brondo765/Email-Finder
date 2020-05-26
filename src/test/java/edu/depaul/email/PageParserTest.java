@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ class PageParserTest {
     @Test
     @DisplayName("Test which should be able to find an email in a simple HTML page")
     void testOneEmail() throws IOException {
-        Document doc = Jsoup.parse(file, "UTF-8");
+        Document doc = Jsoup.parse(file, String.valueOf(StandardCharsets.UTF_8));
         Set<String> emails = parser.findEmails(doc);
         expected.add("ThisIsAnEmail@yahoo.com");
         assertEquals(expected, emails);
@@ -48,7 +49,7 @@ class PageParserTest {
     @Test
     @DisplayName("Test which should be able to find a link in a simple HTML page")
     void testOneLink() throws IOException {
-        Document doc = Jsoup.parse(file, "UTF-8");
+        Document doc = Jsoup.parse(file, String.valueOf(StandardCharsets.UTF_8));
         Set<String> links = parser.findLinks(doc);
         expected.add("www.cnn.com/sports-highlights");
         assertEquals(expected, links);
@@ -57,7 +58,7 @@ class PageParserTest {
     @Test
     @DisplayName("Test for multiple tags on one HTML page")
     void testMultipleTags() throws IOException {
-        Document doc = Jsoup.parse(file2, "UTF-8");
+        Document doc = Jsoup.parse(file2, String.valueOf(StandardCharsets.UTF_8));
         Set<String> links = parser.findLinks(doc);
         expected.add("https://this-links-out-somewhere.com");
         expected.add("../relativeLink.html");
@@ -70,7 +71,7 @@ class PageParserTest {
     @Test
     @DisplayName("Test for multiple emails on one HTML page")
     void testMultipleLinks() throws IOException {
-        Document doc = Jsoup.parse(file2, "UTF-8");
+        Document doc = Jsoup.parse(file2, String.valueOf(StandardCharsets.UTF_8));
         Set<String> emails = parser.findEmails(doc);
         expected.add("SomeEmail@yahoo.com");
         expected.add("bwegner@depaul.edu");
