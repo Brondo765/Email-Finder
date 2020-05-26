@@ -1,0 +1,3 @@
+../correctLink.html
+www.website.com/exists
+www.website.com/landing-page
