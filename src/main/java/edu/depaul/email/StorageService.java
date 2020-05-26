@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Encapsulates storage handling so that we can use a variety of services.  The
+ * Encapsulates storage handling so that we can use a variety of services. The
  * initial implementation just uses the file system.
  */
 public class StorageService {
@@ -22,7 +22,6 @@ public class StorageService {
   private Map<StorageType, String> locations = new HashMap<>();
 
   public StorageService addLocation(StorageType key, String location) {
-
     locations.put(key, location);
     return this;
   }

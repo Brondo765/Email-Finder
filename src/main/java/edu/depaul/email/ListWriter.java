@@ -16,12 +16,14 @@ import java.util.Collection;
 public class ListWriter {
 
   private final OutputStream output;
-  private byte[] newLine = {'\n'};
+  private final byte[] newLine = {'\n'};
 
   public ListWriter(OutputStream output) {
     this.output = output;
   }
 
+  // Added suppress warning as default charset cannot be specified for platform dependencies
+  @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("DM_DEFAULT_ENCODING")
   public void writeList(Collection<String> aList) throws IOException {
     for (String item : aList) {
       output.write(item.getBytes());

@@ -8,6 +8,7 @@ package edu.depaul.email;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -59,7 +60,7 @@ public class PageFetcher {
 
   private Document getFromFile(String path) throws IOException {
     File input = new File(path);
-    Document doc = Jsoup.parse(input, "UTF-8");
+    Document doc = Jsoup.parse(input, String.valueOf(StandardCharsets.UTF_8));
     return doc;
   }
 
