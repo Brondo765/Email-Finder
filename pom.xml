@@ -21,7 +21,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.version}</version>
+      <version>5.6.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -33,7 +33,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
-      <version>${junit.version}</version>
+      <version>5.6.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -66,6 +66,12 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>2.23.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
+      <version>4.0.3</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
@@ -130,6 +136,30 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.0.0</version>
+        <configuration>
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+          <xmlOutput>true</xmlOutput>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs</artifactId>
+            <version>4.0.3</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
