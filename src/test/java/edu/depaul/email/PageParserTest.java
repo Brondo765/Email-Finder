@@ -51,7 +51,7 @@ class PageParserTest {
     void testOneLink() throws IOException {
         Document doc = Jsoup.parse(file, String.valueOf(StandardCharsets.UTF_8));
         Set<String> links = parser.findLinks(doc);
-        expected.add("www.cnn.com/sports-highlights");
+        expected.add("http://www.cnn.com");
         assertEquals(expected, links);
     }
 
