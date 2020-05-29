@@ -1,0 +1,5 @@
+rminnich@gmail.com
+bergevan@us.ibm.com
+ken@plan9.bell-labs.com
+forsyth@vitanuova.com
+jmk@plan9.bell-labs.com
