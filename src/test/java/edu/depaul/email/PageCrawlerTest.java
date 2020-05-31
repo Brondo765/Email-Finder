@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-// No mocks allowed here
 // Test that:
 // 1. Crawl function is recursive - does it avoid endless loops?
 // 2. Does it quit when the target size is met
@@ -35,7 +36,7 @@ class PageCrawlerTest {
 
     @Test
     @DisplayName("Test for email size when specified to max size")
-    void testEmailSizeSet() {
+    void testEmailMaxSizeSet() {
         PageCrawler crawler = new PageCrawler(service, 50);
         crawler.crawl("https://www.u-46.org/");
         assertEquals(50, crawler.getEmails().size());
@@ -77,5 +78,20 @@ class PageCrawlerTest {
         crawler.crawl("http://www.columbia.edu/~fdc/sample.html");
         crawler.report();
         assertTrue(bad.exists());
+    }
+
+    @Test
+    @DisplayName("Mock test for StorageService.addLocation when report is called on crawler")
+    void testMockStorage() {
+        StorageService mockStorage = mock(StorageService.class);
+        mockStorage.addLocation(StorageService.StorageType.EMAIL, "src\\test\\resources\\mockStorageEmails.txt");
+        mockStorage.addLocation(StorageService.StorageType.GOODLINKS, "src\\test\\resources\\mockStorageGood.txt");
+        mockStorage.addLocation(StorageService.StorageType.BADLINKS, "src\\test\\resources\\mockStorageBad.txt");
+        PageCrawler crawler = new PageCrawler(mockStorage, 5);
+        crawler.crawl("https://www.msichicago.org/");
+        crawler.report();
+        verify(mockStorage).addLocation(StorageService.StorageType.EMAIL,"src\\test\\resources\\mockStorageEmails.txt");
+        verify(mockStorage).addLocation(StorageService.StorageType.GOODLINKS,"src\\test\\resources\\mockStorageGood.txt");
+        verify(mockStorage).addLocation(StorageService.StorageType.BADLINKS,"src\\test\\resources\\mockStorageBad.txt");
     }
 }
