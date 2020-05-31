@@ -15,9 +15,21 @@
     <logback.version>1.2.3</logback.version>
     <surefire.version>3.0.0-M4</surefire.version>
     <assembler.version>3.1.0</assembler.version>
+    <cucumber.version>5.6.0</cucumber.version>
   </properties>
-
   <dependencies>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>5.6.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>5.6.0</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -27,7 +39,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.version}</version>
+      <version>5.6.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
