@@ -19,6 +19,7 @@ import static org.mockito.Mockito.*;
 class ListWriterTest {
     private final File file = new File("src\\test\\resources\\writerOutput.txt");
     private Collection<String> list;
+    private Collection<String> list2;
 
     @BeforeEach
     void setup() {
@@ -27,6 +28,10 @@ class ListWriterTest {
                 "HereBeAnother@yahoo.com",
                 "email@gmail.com",
                 "referenceMail@mail.org");
+
+        list2 = Arrays.asList("email@gmail.com",
+                "someNameHere@yahoo.com",
+                "name@depaul.edu");
     }
 
     @Test
@@ -51,7 +56,7 @@ class ListWriterTest {
     @DisplayName("Test for mocked ListWriter verifies when writeList is called")
     void testMockWriter() throws IOException {
         ListWriter mockWriter = mock(ListWriter.class);
-        mockWriter.writeList(list);
-        verify(mockWriter).writeList(list);
+        mockWriter.writeList(list2);
+        verify(mockWriter).writeList(any());
     }
 }
