@@ -15,7 +15,6 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PageParserTest {
-    // Made easier for relative path in Windows file system
     private final File file = new File("src\\test\\resources\\oneTestPage.html");
     private final File file2 = new File("src\\test\\resources\\multiTestPage.html");
     private PageParser parser;

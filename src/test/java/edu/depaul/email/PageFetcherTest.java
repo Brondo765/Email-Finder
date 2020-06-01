@@ -16,12 +16,6 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// No reason to mock here
-// Verify that:
-// 1. Get returns a document when the url is good
-// 2. Same for getString
-// 3. Try to force some exceptions to verify you get expected types
-
 class PageFetcherTest {
     private PageFetcher fetcher;
 
@@ -100,10 +94,10 @@ class PageFetcherTest {
     private static Stream<Arguments> provideWebsiteInput() {
         return Stream.of(
                 Arguments.of("http://www.cnn.com"),
-                Arguments.of("http://www.cnbc.com"),
+                Arguments.of("https://web.ics.purdue.edu/~gchopra/class/public/pages/webdesign/05_simple.html"),
                 Arguments.of("http://www.cdm.depaul.edu"),
                 Arguments.of("http://www.basicwebsiteexample.com/"),
-                Arguments.of("https://www.littlepotatoes.com/recipes/"));
+                Arguments.of("https://www.york.ac.uk/teaching/cws/wws/webpage1.html"));
     }
 
     @Test
