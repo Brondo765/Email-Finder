@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
         features = "src\\test\\resources\\parser.feature",
         strict = true,
         stepNotifications = true)
-class TestRunner {
+class CucumberTest {
 }
