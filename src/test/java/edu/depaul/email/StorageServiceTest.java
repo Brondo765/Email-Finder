@@ -38,9 +38,9 @@ class StorageServiceTest {
         good = new StorageService();
         bad = new StorageService();
         email = new StorageService();
-        locationGood = "src\\test\\resources\\goodLinks.txt\\";
-        locationBad = "src\\test\\resources\\badLinks.txt\\";
-        locationEmail = "src\\test\\resources\\email.txt\\";
+        locationGood = "src\\test\\resources\\storageGoodLinks.txt\\";
+        locationBad = "src\\test\\resources\\storageBadLinks.txt\\";
+        locationEmail = "src\\test\\resources\\storageEmail.txt\\";
     }
 
     @Test
