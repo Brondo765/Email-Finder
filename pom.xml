@@ -72,13 +72,19 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>2.23.4</version>
-      <scope>compile</scope>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
       <version>4.0.3</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>3.0.0-M4</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -88,39 +94,22 @@
         <!-- executes junit tests -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire.version}</version>
+        <version>3.0.0-M4</version>
       </plugin>
       <plugin>
-        <!-- Produces 2 kinds of outputs:
-             1. a 'fat' jar which contains this app as well as its dependencies
-             2. a ZIP file containing the source code
-        -->
-
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.1.0</version>
-        <configuration>
-          <finalName>email-finder</finalName>
-          <appendAssemblyId>false</appendAssemblyId>
-          <descriptors>
-            <descriptor>\src\assembly.xml</descriptor>
-          </descriptors>
-          <descriptorRefs>
-            <descriptorRef>src</descriptorRef>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-          <archive>
-            <manifest>
-              <mainClass>edu.depaul.email.EmailFinder</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M4</version>
         <executions>
           <execution>
-            <id>make-assembly</id>
-            <phase>package</phase>
+            <id>generate-test-report</id>
+            <phase>test</phase>
             <goals>
-              <goal>single</goal>
+              <goal>report-only</goal>
             </goals>
+            <configuration>
+              <linkXRef>false</linkXRef>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -154,6 +143,8 @@
         </configuration>
         <executions>
           <execution>
+            <id>check</id>
+            <phase>verify</phase>
             <goals>
               <goal>check</goal>
             </goals>
@@ -166,6 +157,35 @@
             <version>4.0.3</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <!-- Produces 2 kinds of outputs:
+             1. a 'fat' jar which contains this app as well as its dependencies
+             2. a ZIP file containing the source code
+        -->
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <finalName>email-finder</finalName>
+          <appendAssemblyId>false</appendAssemblyId>
+          <descriptors>
+            <descriptor>\src\assembly.xml</descriptor>
+          </descriptors>
+          <archive>
+            <manifest>
+              <mainClass>edu.depaul.email.EmailFinder</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
