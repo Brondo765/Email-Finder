@@ -13,9 +13,6 @@ import java.util.Collection;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-// Make list writer test and use mock!
-// Pass in object and verify that it contains expected results after calling writeList
-
 class ListWriterTest {
     private final File file = new File("src\\test\\resources\\writerOutput.txt");
     private Collection<String> list;
@@ -53,10 +50,11 @@ class ListWriterTest {
     }
 
     @Test
-    @DisplayName("Test for mocked ListWriter verifies when writeList is called")
-    void testMockWriter() throws IOException {
-        ListWriter mockWriter = mock(ListWriter.class);
-        mockWriter.writeList(list2);
-        verify(mockWriter).writeList(any());
+    @DisplayName("Test using mocks on output stream verifies when something is written")
+    void testMockStreamOutput() throws IOException {
+        FileOutputStream out = mock(FileOutputStream.class);
+        ListWriter writer = new ListWriter(out);
+        writer.writeList(list2);
+        verify(out, atLeast(3)).write(any());
     }
 }
