@@ -10,11 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-// Test that:
-// 1. Crawl function is recursive - does it avoid endless loops?
-// 2. Does it quit when the target size is met
-// 3. Does the report function produce expected results
-
 class PageCrawlerTest {
     private StorageService service;
 
@@ -54,30 +49,30 @@ class PageCrawlerTest {
     @DisplayName("Test for report on emails stored in crawl")
     void testReportEmails() {
         File emails = new File(String.valueOf("src\\test\\resources\\crawlerEmail.txt\\"));
-        PageCrawler crawler = new PageCrawler(service, 5);
+        PageCrawler crawler = new PageCrawler(service, 8);
         crawler.crawl("http://www.columbia.edu/~fdc/sample.html");
         crawler.report();
-        assertTrue(emails.exists());
+        assertTrue(emails.exists() && crawler.getEmails().size() == 8);
     }
 
     @Test
     @DisplayName("Test for report on bad links stored in crawl")
     void testReportGoodLinks() {
         File good = new File(String.valueOf("src\\test\\resources\\crawlerGood.txt\\"));
-        PageCrawler crawler = new PageCrawler(service, 5);
+        PageCrawler crawler = new PageCrawler(service, 8);
         crawler.crawl("http://www.columbia.edu/~fdc/sample.html");
         crawler.report();
-        assertTrue(good.exists());
+        assertTrue(good.exists() && crawler.getGoodLinks().size() > 0);
     }
 
     @Test
     @DisplayName("Test for report on bad links stored in crawl")
     void testReportBadLinks() {
         File bad = new File(String.valueOf("src\\test\\resources\\crawlerBad.txt\\"));
-        PageCrawler crawler = new PageCrawler(service, 5);
+        PageCrawler crawler = new PageCrawler(service, 8);
         crawler.crawl("http://www.columbia.edu/~fdc/sample.html");
         crawler.report();
-        assertTrue(bad.exists());
+        assertTrue(bad.exists() && crawler.getBadLinks().size() > 0);
     }
 
     @Test
