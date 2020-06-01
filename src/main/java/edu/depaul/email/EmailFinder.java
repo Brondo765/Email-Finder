@@ -5,7 +5,6 @@
  */
 package edu.depaul.email;
 
-import edu.depaul.email.StorageService.StorageType;
 import static edu.depaul.email.StorageService.StorageType.EMAIL;
 import static edu.depaul.email.StorageService.StorageType.GOODLINKS;
 import static edu.depaul.email.StorageService.StorageType.BADLINKS;
@@ -22,9 +21,9 @@ public class EmailFinder {
   private StorageService setupStorage() {
     StorageService storage = new StorageService();
     storage
-        .addLocation(EMAIL, "email.txt")
-        .addLocation(GOODLINKS, "good-links.txt")
-        .addLocation(BADLINKS, "badlinks.txt");
+        .addLocation(EMAIL, "src\\test\\resources\\finder-email.txt")
+        .addLocation(GOODLINKS, "src\\test\\resources\\finder-good-links.txt")
+        .addLocation(BADLINKS, "src\\test\\resources\\finder-bad-links.txt");
     return storage;
   }
 
@@ -48,5 +47,4 @@ public class EmailFinder {
     EmailFinder finder = new EmailFinder();
     finder.run(args);
   }
-
 }

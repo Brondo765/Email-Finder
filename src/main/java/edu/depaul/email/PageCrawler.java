@@ -109,5 +109,4 @@ public class PageCrawler {
     storage.storeList(GOODLINKS, goodLinks);
     storage.storeList(BADLINKS, badLinks);
   }
-
 }
