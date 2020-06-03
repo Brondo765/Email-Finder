@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LinkFinderSteps {
     private Document doc;
 
-    @Given("the path to the html file to find links is {string}")
-    public void the_path_to_the_html_file_to_find_links_is(String path) {
+    @Given("the path to the html file is {string}")
+    public void the_path_to_the_html_file_is(String path) {
         doc = Jsoup.parse(path);
     }
 

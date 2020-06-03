@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src\\test\\resources\\parser.feature",
+        features = { "src\\test\\resources\\parser.feature", "src\\test\\resources\\writer.feature" },
         strict = true,
         stepNotifications = true)
 class CucumberTest {
